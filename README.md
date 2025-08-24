@@ -35,17 +35,17 @@ git init
 3. **Add all project files to the repository**  
 git add .
 
-text
+
 
 4. **Commit the added files**  
 git commit -m "Initial commit: Add complete project code"
 
-text
+
 
 5. **Add the remote GitHub repository URL**  
 git remote add origin https://github.com/kikitha13/Devops-project.git
 
-text
+
 
 6. **Push the committed code to GitHub main branch**  
 git push -u origin main
@@ -173,13 +173,14 @@ Pushes the Docker images to the Docker Hub repository.
 
 SSHs into the VM to pull the latest images and restart Docker containers using:
 
-bash
+
 docker-compose pull
 docker-compose up -d
-Nginx Reverse Proxy Setup
+---
+###Nginx Reverse Proxy Setup
 To make the entire application accessible on port 80, we setup Nginx as a reverse proxy on the VM with the following basic configuration:
 
-##Install Nginx on the VM:
+Install Nginx on the VM:
 
 
 sudo apt update
