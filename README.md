@@ -172,10 +172,11 @@ Logs in to Docker Hub securely using Jenkins credentials.
 Pushes the Docker images to the Docker Hub repository.
 
 SSHs into the VM to pull the latest images and restart Docker containers using:
-
-
 docker-compose pull
 docker-compose up -d
+
+
+
 ---
 ### Nginx Reverse Proxy Setup
 To make the entire application accessible on port 80, we setup Nginx as a reverse proxy on the VM with the following basic configuration:
