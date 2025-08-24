@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('docker1234')  // Docker Hub credentials ID
         VM_SSH_KEY = 'myvmid'                             // SSH private key credential ID
-        //VM_HOST = '13.126.72.51'                // Replace with your VM address
+        VM_HOST = '13.126.73.237'                // Replace with your VM address
     }
 
     stages {
