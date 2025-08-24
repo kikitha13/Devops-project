@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker1234')  // Your Docker Hub username/password credential ID in Jenkins
-        VM_SSH_KEY = 'myvmid'                             // SSH private key credential ID in Jenkins
-        VM_HOST = '13.126.72.51'                          // Your VM's public IP or hostname
+        DOCKERHUB_CREDENTIALS = credentials('docker123')  // Docker Hub credentials ID
+        VM_SSH_KEY = 'myvmid'                             // SSH private key credential ID
+        VM_HOST = '13.126.72.51'                // Replace with your VM address
     }
 
     stages {
@@ -33,8 +33,8 @@ pipeline {
         stage('Login to Docker Hub') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'docker123', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                        sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                        echo "Logged into Docker Hub"
                     }
                 }
             }
@@ -43,8 +43,10 @@ pipeline {
         stage('Push Docker Images') {
             steps {
                 script {
-                    sh 'docker push kikitha/mean-backend:latest'
-                    sh 'docker push kikitha/mean-frontend:latest'
+                    docker.withRegistry('', DOCKERHUB_CREDENTIALS) {
+                        docker.image('kikitha/mean-backend:latest').push()
+                        docker.image('kikitha/mean-frontend:latest').push()
+                    }
                 }
             }
         }
@@ -69,5 +71,4 @@ pipeline {
         }
     }
 }
-
-               
+       
